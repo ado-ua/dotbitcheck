@@ -20,7 +20,6 @@ options.add_option("-s", "--session", help="session id")
 options.add_option("-l", "--loop", help="loop indefinetly, defalut - False", default="False", action="store_true")
 
 opts, args = options.parse_args()
-print opts.file
 
 """
 Errors handling
@@ -81,7 +80,6 @@ def main(sessions, loop):
 
             new_responses[session_index] = session_check(session)
             session_index = session_index + 1
-        print new_responses
         for response in new_responses:
             if response == old_responses[response_index]:
                 print response[0], "not updated"
@@ -91,7 +89,7 @@ def main(sessions, loop):
                 print response[0], "updated"
                 print "BTC: ", float(response[1]), "LTC: ", float(response[2]), "PPC: ", float(response[3]), "XMP: ", float(response[4])
                 response_index = response_index + 1
-        if loop == False:
+        if loop == "False":
             break
 
 if opts.file:
@@ -102,4 +100,5 @@ if opts.file:
 else:
     sessions = (opts.session,)
 
+print opts.loop
 main(sessions,opts.loop)
